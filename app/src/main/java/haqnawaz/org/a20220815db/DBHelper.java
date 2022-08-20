@@ -58,24 +58,25 @@ public class DBHelper extends SQLiteOpenHelper {
     public ArrayList<StudentModel> getAllStudents() {
 
         SQLiteDatabase db = this.getReadableDatabase();
-
         Cursor cursorCourses = db.rawQuery("SELECT * FROM " + STUDENT_TABLE, null);
-
         ArrayList<StudentModel> studentArrayList = new ArrayList<>();
 
         // moving our cursor to first position.
         if (cursorCourses.moveToFirst()) {
             do {
-
                 studentArrayList.add(new StudentModel(cursorCourses.getString(1),
                         cursorCourses.getInt(2),
                         cursorCourses.getInt(3) == 1 ? true : false));
             } while (cursorCourses.moveToNext());
-
         }
-
         cursorCourses.close();
         return studentArrayList;
     }
 
+    public void deleteRecord(StudentModel studentModel){
+        SQLiteDatabase db= this.getReadableDatabase();
+        Cursor cursorCourses;
+        cursorCourses = db.rawQuery("DELETE * FROM " +STUDENT_TABLE+ "WHERE" +STUDENT_NAME+ "=" + studentModel.getName(), null);
+
+    }
 }

@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         buttonAdd = findViewById(R.id.buttonAdd);
         buttonViewAll = findViewById(R.id.buttonViewAll);
+        buttondelete = findViewById(R.id.deleteRec);
         editName = findViewById(R.id.editTextName);
         editRollNumber = findViewById(R.id.editTextRollNumber);
         switchIsActive = findViewById(R.id.switchStudent);
@@ -57,7 +58,22 @@ public class MainActivity extends AppCompatActivity {
                 ArrayAdapter arrayAdapter = new ArrayAdapter<StudentModel>
                         (MainActivity.this, android.R.layout.simple_list_item_1,list);
                 listViewStudent.setAdapter(arrayAdapter);
+            }
+        });
 
+        buttondelete.setOnClickListener(new View.OnClickListener(){
+            StudentModel studentmodel;
+            @Override
+            public void onClick(View view) {
+
+                try{
+                    studentmodel = new StudentModel(editName.getText().toString(), Integer.parseInt(editRollNumber.getText().toString()), switchIsActive.isChecked());
+                }
+                catch(Exception e){
+                    Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                }
+                DBHelper dbHelper=new DBHelper(MainActivity.this);
+                dbHelper.deleteRecord(studentmodel);
             }
         });
 
