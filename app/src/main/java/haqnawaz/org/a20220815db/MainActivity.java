@@ -15,7 +15,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button buttonAdd, buttonViewAll;
+    Button buttonAdd, buttonViewAll, buttondelete;
     EditText editName, editRollNumber;
     Switch switchIsActive;
     ListView listViewStudent;
@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         editRollNumber = findViewById(R.id.editTextRollNumber);
         switchIsActive = findViewById(R.id.switchStudent);
         listViewStudent = findViewById(R.id.listViewStudent);
+
 
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             StudentModel studentModel;
