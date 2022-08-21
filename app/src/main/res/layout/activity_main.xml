@@ -72,9 +72,11 @@
         android:id="@+id/deleteRec"
         android:layout_width="99dp"
         android:layout_height="78dp"
+        android:layout_marginTop="50dp"
         android:text="Delete record"
-        tools:layout_editor_absoluteX="276dp"
-        tools:layout_editor_absoluteY="176dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonAdd"
+        app:layout_constraintTop_toTopOf="@+id/switchStudent" />
 
     <ListView
         android:id="@+id/listViewStudent"

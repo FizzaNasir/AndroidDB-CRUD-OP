@@ -73,10 +73,15 @@ public class DBHelper extends SQLiteOpenHelper {
         return studentArrayList;
     }
 
-    public void deleteRecord(StudentModel studentModel){
-        SQLiteDatabase db= this.getReadableDatabase();
-        Cursor cursorCourses;
-        cursorCourses = db.rawQuery("DELETE * FROM " +STUDENT_TABLE+ "WHERE" +STUDENT_NAME+ "=" + studentModel.getName(), null);
+    public String getid(String name, int rollno, boolean isenroll){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor id=db.rawQuery("SELECT" +STUDENT_ID+ "FROM"+STUDENT_TABLE+ "WHERE" +STUDENT_ROLL+ "=" +rollno, null );
+        return id.toString();
+    }
+    public int deleteRecord(String id){
+        SQLiteDatabase db= this.getWritableDatabase();
+        int count = db.delete(STUDENT_TABLE, "StudentID= ?" ,new String[]{id});
+        return count;
 
     }
 }

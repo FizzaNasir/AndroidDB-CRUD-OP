@@ -73,7 +73,8 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
                 }
                 DBHelper dbHelper=new DBHelper(MainActivity.this);
-                dbHelper.deleteRecord(studentmodel);
+                String id= dbHelper.getid(studentmodel.getName(), studentmodel.getRollNmber(), studentmodel.isEnroll());
+                dbHelper.deleteRecord(id);
             }
         });
 
