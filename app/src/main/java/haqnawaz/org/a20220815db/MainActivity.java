@@ -65,16 +65,10 @@ public class MainActivity extends AppCompatActivity {
             StudentModel studentmodel;
             @Override
             public void onClick(View view) {
-
-                try{
-                    studentmodel = new StudentModel(editName.getText().toString(), Integer.parseInt(editRollNumber.getText().toString()), switchIsActive.isChecked());
-                }
-                catch(Exception e){
-                    Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
-                }
                 DBHelper dbHelper=new DBHelper(MainActivity.this);
-                String id= dbHelper.getid(studentmodel.getName(), studentmodel.getRollNmber(), studentmodel.isEnroll());
-                dbHelper.deleteRecord(id);
+                int status= dbHelper.deleteRecord(Integer.parseInt(editRollNumber.getText().toString()));
+                if(status>0){Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();}
+                else{Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();}
             }
         });
 
